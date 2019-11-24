@@ -1,0 +1,3 @@
+include netsuite_db_connector/*.sql
+exclude dev
+exclude private
