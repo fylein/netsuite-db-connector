@@ -33,11 +33,9 @@ Here's example usage.
 
 ```python
 import os
-import itertools
-import json
+import sqlite3
 from netsuitesdk import NetSuiteConnection
-from netsuite_db_connector.extract import NetSuiteExtractConnector
-from netsuite_db_connector.load import NetSuiteLoadConnector
+from netsuite_db_connector import NetSuiteExtractConnector, NetSuiteLoadConnector
 
 def ns_connect():
     NS_ACCOUNT = os.getenv('NS_ACCOUNT')
@@ -53,16 +51,16 @@ ns = ns_connect()
 dbconn = sqlite3.connect('/tmp/ns.db', detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES)
 x = NetSuiteExtractConnector(ns=ns, dbconn=dbconn)
 x.create_tables()
-y = NetSuiteLoadConnector(ns=ns, dbconn=dbconn)
-y.create_tables()
 
-
-x.extract_accounts()
 x.extract_currencies()
+x.extract_accounts()
 x.extract_departments()
 x.extract_locations()
 x.extract_vendors()
-x.extract_classes()
+x.extract_classifications()
+
+y = NetSuiteLoadConnector(ns=ns, dbconn=dbconn)
+y.create_tables()
 
 # do some transformations and populated vendor bills related load tables
 for vendor_bill_id in y.get_vendor_bill_ids():

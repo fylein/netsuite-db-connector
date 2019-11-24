@@ -15,7 +15,7 @@ setuptools.setup(
     keywords=['netsuite', 'api', 'python', 'sdk', 'sqlite'],
     url='https://github.com/fylein/netsuite-db-connector',
     packages=setuptools.find_packages(),
-    install_requires=['netsuitesdk==1.0.0'],
+    install_requires=['netsuitesdk==1.0.1'],
     classifiers=[
         'Topic :: Internet :: WWW/HTTP',
         'Intended Audience :: Developers',
