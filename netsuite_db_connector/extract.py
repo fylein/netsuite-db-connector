@@ -30,4 +30,22 @@ class NetSuiteExtractConnector:
         ddlsql = open(ddlpath, 'r').read()
         self.__dbconn.executescript(ddlsql)
 
-    # TODO: add extract functions
+    # TODO: implement these
+    def extract_accounts(self):
+        raise NotImplementedError()
+
+    def extract_currencies(self):
+        raise NotImplementedError()
+
+    def extract_departments(self):
+        raise NotImplementedError()
+
+    def extract_locations(self):
+        raise NotImplementedError()
+
+    def extract_vendors(self):
+        raise NotImplementedError()
+
+    def extract_classes(self):
+        raise NotImplementedError()
+

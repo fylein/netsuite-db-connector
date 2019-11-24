@@ -1,5 +1,8 @@
 # NetSuite Database Connector
-Connects Xero to a database to transfer information to and fro.
+
+*Warning*: This project is undergoing active development and is not yet production-grade. Please mail the author if you want to find out more
+
+Connects NetSuite to a database to transfer information to and fro.
 
 ## Installation
 
@@ -62,9 +65,9 @@ x.extract_vendors()
 x.extract_classes()
 
 # do some transformations and populated vendor bills related load tables
-for vendor_bill_id in y.load_vendor_bills_generator():
-    internal_id = y.get_ns_internal_id(vendor_bill_id=vendor_bill_id)
-    print(f'posted invoice {vendor_bill_id} for which NS returned {internal_id}')
+for vendor_bill_id in y.get_vendor_bill_ids():
+    internal_id = y.load_vendor_bill(vendor_bill_id=vendor_bill_id)
+    print(f'posted vendor_bill_id {vendor_bill_id} for which NS returned {internal_id}')
 ```
 
 ## Contribute

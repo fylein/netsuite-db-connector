@@ -27,4 +27,11 @@ class NetSuiteLoadConnector:
         ddlsql = open(ddlpath, 'r').read()
         self.__dbconn.executescript(ddlsql)
 
-    # TODO: add load functions
+    def get_vendor_bill_ids(self):
+        raise NotImplementedError()
+
+    def get_vendor_bill_ns_internal_id(self, vendor_bill_id):
+        raise NotImplementedError()
+
+    def load_vendor_bill(self, vendor_bill_id: str):
+        raise NotImplementedError()
