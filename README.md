@@ -63,9 +63,9 @@ y = NetSuiteLoadConnector(ns=ns, dbconn=dbconn)
 y.create_tables()
 
 # do some transformations and populated vendor bills related load tables
-for vendor_bill_id in y.get_vendor_bill_ids():
-    internal_id = y.load_vendor_bill(vendor_bill_id=vendor_bill_id)
-    print(f'posted vendor_bill_id {vendor_bill_id} for which NS returned {internal_id}')
+for vendor_bill_external_id in y.get_vendor_bill_external_ids():
+    internal_id = y.load_vendor_bill(vendor_bill_external_id=vendor_bill_external_id)
+    print(f'posted vendor_bill_id {vendor_bill_external_id} for which NS returned {internal_id}')
 ```
 
 ## Contribute
