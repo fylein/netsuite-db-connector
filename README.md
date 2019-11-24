@@ -1,2 +1,134 @@
-# netsuite-db-connector
-Connector that makes it easy to extract and load data from NetSuite
+# NetSuite Database Connector
+Connects Xero to a database to transfer information to and fro.
+
+## Installation
+
+This project requires [Python 3+](https://www.python.org/downloads/).
+
+1. Download this project and use it (copy it in your project, etc).
+2. Install it from [pip](https://pypi.org).
+
+        $ pip install netsuite-db-connector
+
+## Usage
+
+To use this connector you'll need connect to a NetSuite account via Token-based Authentication (TBA).
+
+First, setup TBA credentials using environment variables.
+
+```
+# TBA credentials
+export NS_ACCOUNT=xxxx
+export NS_CONSUMER_KEY=xxxx
+export NS_CONSUMER_SECRET=xxxx
+export NS_TOKEN_KEY=xxxx
+export NS_TOKEN_SECRET=xxxx
+
+```
+
+Here's example usage. 
+
+```python
+import os
+import itertools
+import json
+from netsuitesdk import NetSuiteConnection
+from netsuite_db_connector.extract import NetSuiteExtractConnector
+from netsuite_db_connector.load import NetSuiteLoadConnector
+
+def ns_connect():
+    NS_ACCOUNT = os.getenv('NS_ACCOUNT')
+    NS_CONSUMER_KEY = os.getenv('NS_CONSUMER_KEY')
+    NS_CONSUMER_SECRET = os.getenv('NS_CONSUMER_SECRET')
+    NS_TOKEN_KEY = os.getenv('NS_TOKEN_KEY')
+    NS_TOKEN_SECRET = os.getenv('NS_TOKEN_SECRET')
+    nc = NetSuiteConnection(account=NS_ACCOUNT, consumer_key=NS_CONSUMER_KEY, consumer_secret=NS_CONSUMER_SECRET,                   token_key=NS_TOKEN_KEY, token_secret=NS_TOKEN_SECRET)
+    return nc
+
+ns = ns_connect()
+
+dbconn = sqlite3.connect('/tmp/ns.db', detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES)
+x = NetSuiteExtractConnector(ns=ns, dbconn=dbconn)
+x.create_tables()
+y = NetSuiteLoadConnector(ns=ns, dbconn=dbconn)
+y.create_tables()
+
+
+x.extract_accounts()
+x.extract_currencies()
+x.extract_departments()
+x.extract_locations()
+x.extract_vendors()
+x.extract_classes()
+
+# do some transformations and populated vendor bills related load tables
+for vendor_bill_id in y.load_vendor_bills_generator():
+    internal_id = y.get_ns_internal_id(vendor_bill_id=vendor_bill_id)
+    print(f'posted invoice {vendor_bill_id} for which NS returned {internal_id}')
+```
+
+## Contribute
+
+To contribute to this project follow the steps
+
+* Fork and clone the repository.
+* Run `pip install -r requirements.txt`
+* Setup pylint precommit hook
+    * Create a file `.git/hooks/pre-commit`
+    * Copy and paste the following lines in the file - 
+        ```bash
+        #!/usr/bin/env bash 
+        git-pylint-commit-hook
+        ```
+* Make necessary changes
+* Run unit tests to ensure everything is fine
+
+## Unit Tests
+
+To run unit tests, run pytest in the following manner:
+
+```
+python -m pytest test/unit
+```
+
+You should see something like this:
+```
+...
+```
+
+## Integration Tests
+
+To run unit tests, you will need to connect to a real NetSuite account. Set the following environment variables before running the integration tests:
+
+```
+# TBA credentials
+export NS_ACCOUNT=xxxx
+export NS_CONSUMER_KEY=xxxx
+export NS_CONSUMER_SECRET=xxxx
+export NS_TOKEN_KEY=xxxx
+export NS_TOKEN_SECRET=xxxx
+
+```
+
+## Code coverage
+
+To get code coverage report, run this command:
+
+```python
+python -m pytest --cov=netsuite_db_connector
+
+<snipped output>
+
+```
+
+To get an html report, run this command:
+
+```python
+python -m pytest --cov=netsuite_db_connector --cov-report html:cov_html
+```
+
+We want to maintain code coverage of more than 95% for this project at all times.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
