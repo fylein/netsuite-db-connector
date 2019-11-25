@@ -22,12 +22,24 @@ def get_mock_ns_from_file(filename):
     mock_ns = Mock()
     mock_ns.accounts.get_all.return_value = mock_ns_dict['accounts']
     mock_ns.accounts.get_all_generator.return_value = iter(mock_ns_dict['accounts'])
+
     mock_ns.classifications.get_all.return_value = mock_ns_dict['classifications']
+    mock_ns.classifications.get_all_generator.return_value = iter(mock_ns_dict['classifications'])
+
     mock_ns.departments.get_all.return_value = mock_ns_dict['departments']
+    mock_ns.departments.get_all_generator.return_value = iter(mock_ns_dict['departments'])
+
     mock_ns.locations.get_all.return_value = mock_ns_dict['locations']
+    mock_ns.locations.get_all_generator.return_value = iter(mock_ns_dict['locations'])
+
     mock_ns.currencies.get_all.return_value = mock_ns_dict['currencies']
+    mock_ns.currencies.get_all_generator.return_value = iter(mock_ns_dict['currencies'])
+
     mock_ns.vendors.get_all.return_value = mock_ns_dict['vendors']
+    mock_ns.vendors.get_all_generator.return_value = iter(mock_ns_dict['vendors'])
+
     mock_ns.vendor_bills.get_all.return_value = mock_ns_dict['vendor_bills']
+    mock_ns.vendor_bills.get_all_generator.return_value = iter(mock_ns_dict['vendor_bills'])
 
     # TODO: need to fix return_value
 #    mock_ns.vendor_bills.post.return_value = copy.deepcopy(mock_ns_dict['vendor_bills'][0])
