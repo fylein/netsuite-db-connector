@@ -8,7 +8,7 @@ setuptools.setup(
     version='0.0.2',
     author='Siva Narayanan',
     author_email='siva@fyle.in',
-    description='Connects Xero to a database connector to transfer information to and fro',
+    description='Connects NetSuite to a database connector to transfer information to and fro',
     license='MIT',
     long_description=long_description,
     long_description_content_type='text/markdown',

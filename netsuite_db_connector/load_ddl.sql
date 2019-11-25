@@ -10,9 +10,9 @@ create table ns_load_vendor_bills(
     "entityInternalId" text not null
 );
 
-drop table if exists ns_load_vendor_bills_expenses;
+drop table if exists ns_load_vendor_bill_expenses;
 
-create table ns_load_vendor_bills_expenses(
+create table ns_load_vendor_bill_expenses(
     "vendorBillExternalId" text,
     "accountInternalId" text not null,
     "amount" numeric,

@@ -76,7 +76,7 @@ class NetSuiteLoadConnector:
         NetSuiteLoadConnector._replace_with_nested(data=vendor_bill, key='location', type_name='location')
 
         expenses = []
-        for row in self.__dbconn.cursor().execute('select * from ns_load_vendor_bills_expenses where "vendorBillExternalId" = ?', (vendor_bill_external_id,)):
+        for row in self.__dbconn.cursor().execute('select * from ns_load_vendor_bill_expenses where "vendorBillExternalId" = ?', (vendor_bill_external_id,)):
             exp = dict(row)
             del exp['vendorBillExternalId']
             NetSuiteLoadConnector._replace_with_nested(data=exp, key='account', type_name='account')
