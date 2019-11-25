@@ -41,8 +41,7 @@ def get_mock_ns_from_file(filename):
     mock_ns.vendor_bills.get_all.return_value = mock_ns_dict['vendor_bills']
     mock_ns.vendor_bills.get_all_generator.return_value = iter(mock_ns_dict['vendor_bills'])
 
-    # TODO: need to fix return_value
-#    mock_ns.vendor_bills.post.return_value = copy.deepcopy(mock_ns_dict['vendor_bills'][0])
+    mock_ns.vendor_bills.post.return_value = {'externalId': '1237', 'internalId': '1345'}
     return mock_ns
 
 def get_mock_ns():

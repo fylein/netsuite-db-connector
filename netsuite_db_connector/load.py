@@ -86,9 +86,9 @@ class NetSuiteLoadConnector:
             expenses.append(exp)
 
         vendor_bill['expenseList'] = expenses
-        self.logger.info('vb = %s', vendor_bill)
+        self.logger.debug('vb = %s', vendor_bill)
         res = self.__ns.vendor_bills.post(vendor_bill)
-        self.logger.info('res = %s', res)
+        self.logger.debug('res = %s', res)
         assert res['externalId'] == vendor_bill['externalId'], 'External ID does not match'
         internal_id = res['internalId']
 
