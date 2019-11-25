@@ -50,58 +50,76 @@ class NetSuiteExtractConnector:
         # self.logger.info('statement: %s', stmt)
         cur = self.__dbconn.cursor()
         gen = self.__ns.currencies.get_all_generator()
+        ids = []
         for c in gen:
+            ids.append(c['internalId'])
             cur.execute(stmt, c)
         cur.close()
         self.__dbconn.commit()
+        return ids
 
     def extract_accounts(self):
         stmt = self._generate_insert_statement(table_name='ns_extract_accounts')
         # self.logger.info('statement: %s', stmt)
         cur = self.__dbconn.cursor()
         gen = self.__ns.accounts.get_all_generator()
+        ids = []
         for c in gen:
+            ids.append(c['internalId'])
             cur.execute(stmt, c)
         cur.close()
         self.__dbconn.commit()
+        return ids
 
     def extract_departments(self):
         stmt = self._generate_insert_statement(table_name='ns_extract_departments')
         # self.logger.info('statement: %s', stmt)
         cur = self.__dbconn.cursor()
         gen = self.__ns.departments.get_all_generator()
+        ids = []
         for c in gen:
+            ids.append(c['internalId'])
             cur.execute(stmt, c)
         cur.close()
         self.__dbconn.commit()
+        return ids
 
     def extract_locations(self):
         stmt = self._generate_insert_statement(table_name='ns_extract_locations')
         # self.logger.info('statement: %s', stmt)
         cur = self.__dbconn.cursor()
         gen = self.__ns.locations.get_all_generator()
+        ids = []
         for c in gen:
+            ids.append(c['internalId'])
             cur.execute(stmt, c)
         cur.close()
         self.__dbconn.commit()
+        return ids
 
     def extract_vendors(self):
         stmt = self._generate_insert_statement(table_name='ns_extract_vendors')
         # self.logger.info('statement: %s', stmt)
         cur = self.__dbconn.cursor()
         gen = self.__ns.vendors.get_all_generator()
+        ids = []
         for c in gen:
+            ids.append(c['internalId'])
             cur.execute(stmt, c)
         cur.close()
         self.__dbconn.commit()
+        return ids
 
     def extract_classifications(self):
         stmt = self._generate_insert_statement(table_name='ns_extract_classifications')
         # self.logger.info('statement: %s', stmt)
         cur = self.__dbconn.cursor()
         gen = self.__ns.classifications.get_all_generator()
+        ids = []
         for c in gen:
+            ids.append(c['internalId'])
             cur.execute(stmt, c)
         cur.close()
         self.__dbconn.commit()
+        return ids
 
