@@ -46,6 +46,7 @@ class NetSuiteExtractConnector:
         return query
 
     def extract_currencies(self):
+        self.logger.info('Extracting currencies from NetSuite')
         stmt = self._generate_insert_statement(table_name='ns_extract_currencies')
         # self.logger.info('statement: %s', stmt)
         cur = self.__dbconn.cursor()
@@ -56,9 +57,11 @@ class NetSuiteExtractConnector:
             cur.execute(stmt, c)
         cur.close()
         self.__dbconn.commit()
+        self.logger.info('%d currencies extracted', len(ids))
         return ids
 
     def extract_accounts(self):
+        self.logger.info('Extracting accounts from NetSuite')
         stmt = self._generate_insert_statement(table_name='ns_extract_accounts')
         # self.logger.info('statement: %s', stmt)
         cur = self.__dbconn.cursor()
@@ -69,9 +72,11 @@ class NetSuiteExtractConnector:
             cur.execute(stmt, c)
         cur.close()
         self.__dbconn.commit()
+        self.logger.info('%d accounts extracted', len(ids))
         return ids
 
     def extract_departments(self):
+        self.logger.info('Extracting departments from NetSuite')
         stmt = self._generate_insert_statement(table_name='ns_extract_departments')
         # self.logger.info('statement: %s', stmt)
         cur = self.__dbconn.cursor()
@@ -82,9 +87,11 @@ class NetSuiteExtractConnector:
             cur.execute(stmt, c)
         cur.close()
         self.__dbconn.commit()
+        self.logger.info('%d departments extracted', len(ids))
         return ids
 
     def extract_locations(self):
+        self.logger.info('Extracting locations from NetSuite')
         stmt = self._generate_insert_statement(table_name='ns_extract_locations')
         # self.logger.info('statement: %s', stmt)
         cur = self.__dbconn.cursor()
@@ -95,9 +102,11 @@ class NetSuiteExtractConnector:
             cur.execute(stmt, c)
         cur.close()
         self.__dbconn.commit()
+        self.logger.info('%d locations extracted', len(ids))
         return ids
 
     def extract_vendors(self):
+        self.logger.info('Extracting vendors from NetSuite')
         stmt = self._generate_insert_statement(table_name='ns_extract_vendors')
         # self.logger.info('statement: %s', stmt)
         cur = self.__dbconn.cursor()
@@ -108,9 +117,11 @@ class NetSuiteExtractConnector:
             cur.execute(stmt, c)
         cur.close()
         self.__dbconn.commit()
+        self.logger.info('%d vendors extracted', len(ids))
         return ids
 
     def extract_classifications(self):
+        self.logger.info('Extracting classifications from NetSuite')
         stmt = self._generate_insert_statement(table_name='ns_extract_classifications')
         # self.logger.info('statement: %s', stmt)
         cur = self.__dbconn.cursor()
@@ -121,5 +132,5 @@ class NetSuiteExtractConnector:
             cur.execute(stmt, c)
         cur.close()
         self.__dbconn.commit()
+        self.logger.info('%d classifications extracted', len(ids))
         return ids
-
