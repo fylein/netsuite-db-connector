@@ -5,6 +5,7 @@ create table ns_load_vendor_bills(
     "internalId" text,
     "currencyInternalId" text not null,
     "memo" text not null,
+    "departmentInternalId" text,
     "classInternalId" text,
     "locationInternalId" text,
     "entityInternalId" text not null

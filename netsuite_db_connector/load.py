@@ -74,6 +74,7 @@ class NetSuiteLoadConnector:
         NetSuiteLoadConnector._replace_with_nested(data=vendor_bill, key='entity', type_name='vendor')
         NetSuiteLoadConnector._replace_with_nested(data=vendor_bill, key='class', type_name='classification')
         NetSuiteLoadConnector._replace_with_nested(data=vendor_bill, key='location', type_name='location')
+        NetSuiteLoadConnector._replace_with_nested(data=vendor_bill, key='department', type_name='department')
 
         expenses = []
         for row in self.__dbconn.cursor().execute('select * from ns_load_vendor_bill_expenses where "vendorBillExternalId" = ?', (vendor_bill_external_id,)):

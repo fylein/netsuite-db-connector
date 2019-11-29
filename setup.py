@@ -5,7 +5,7 @@ with open('README.md', 'r') as f:
 
 setuptools.setup(
     name='netsuite-db-connector',
-    version='0.1.2',
+    version='0.1.3',
     author='Siva Narayanan',
     author_email='siva@fyle.in',
     description='Connects NetSuite to a database connector to transfer information to and fro',
