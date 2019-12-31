@@ -3,13 +3,13 @@ drop table if exists ns_load_vendor_bills;
 create table ns_load_vendor_bills(
     "externalId" text primary key,
     "internalId" text,
-    "name" text,
     "currencyInternalId" text not null,
     "memo" text not null,
     "departmentInternalId" text,
     "classInternalId" text,
     "locationInternalId" text,
-    "entityInternalId" text not null
+    "entityInternalId" text not null,
+    "tranId" text
 );
 
 drop table if exists ns_load_vendor_bill_expenses;
