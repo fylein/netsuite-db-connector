@@ -5,7 +5,7 @@ with open('README.md', 'r') as f:
 
 setuptools.setup(
     name='netsuite-db-connector',
-    version='0.3.0',
+    version='0.3.1',
     author='Siva Narayanan',
     author_email='siva@fyle.in',
     description='Connects NetSuite to a database connector to transfer information to and fro',
@@ -16,7 +16,7 @@ setuptools.setup(
     url='https://github.com/fylein/netsuite-db-connector',
     packages=setuptools.find_packages(),
     include_package_data=True,
-    install_requires=['netsuitesdk==2.6.1'],
+    install_requires=['netsuitesdk==1.12.0'],
     classifiers=[
         'Topic :: Internet :: WWW/HTTP',
         'Intended Audience :: Developers',
